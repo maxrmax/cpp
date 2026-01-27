@@ -60,6 +60,8 @@ Account::~Account()
 	<< _amount
 	<< ";closed"
 	<< std::endl;
+	_nbAccounts--;
+	_totalAmount -= _amount;
 }
 
 int Account::getNbAccounts(void)
