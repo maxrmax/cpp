@@ -2,6 +2,7 @@
 # define CONTACTS_HPP
 # include <iostream>
 # include <algorithm>
+# include <iomanip>
 
 class Contact
 {

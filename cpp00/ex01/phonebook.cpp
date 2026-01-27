@@ -77,25 +77,37 @@ void Phonebook::search_contact()
 		std::cout << "No contacts saved" << std::endl;
 		return;
 	}
-	std::cout << "index     |first name|last name |nickname  " << std::endl;
-	std::cout << "_________________________________________" << std::endl;
+	std::cout << std::setw(10) << std::right << "index" << "|";
+	std::cout << std::setw(10) << std::right << "first name" << "|";
+	std::cout << std::setw(10) << std::right << "last name" << "|";
+	std::cout << std::setw(10) << std::right << "nickname" << std::endl;
+	std::cout << "-------------------------------------------" << std::endl;
+
 	if (contact_count > PHONEBOOK_SIZE)
 		limit = PHONEBOOK_SIZE;
 	else
 		limit = contact_count;
 	for (int i = 0; i < limit; i++)
 	{
-		std::cout << i << "         |";
-		print_formatted_name(contacts[i].get_first_name(), "|");
-		print_formatted_name(contacts[i].get_last_name(), "|");
-		print_formatted_name(contacts[i].get_nickname(), "|");
-		std::cout << std::endl;
+		std::cout << std::setw(10) << std::right << i << "|";
+		if (contacts[i].get_first_name().length() > 10)
+			std::cout << std::setw(10) << std::right << contacts[i].get_first_name().substr(0, 9) + "." << "|";
+		else
+			std::cout << std::setw(10) << std::right << contacts[i].get_first_name() << "|";
+		if (contacts[i].get_last_name().length() > 10)
+			std::cout << std::setw(10) << std::right << contacts[i].get_last_name().substr(0, 9) + "." << "|";
+		else
+			std::cout << std::setw(10) << std::right << contacts[i].get_last_name() << "|";
+		if (contacts[i].get_nickname().length() > 10)
+			std::cout << std::setw(10) << std::right << contacts[i].get_nickname().substr(0, 9) + "." << std::endl;
+		else
+			std::cout << std::setw(10) << std::right << contacts[i].get_nickname() << std::endl;
 	}
 	std::cout << "Enter index of contact to view: ";
 	std::getline(std::cin, input);
 	if (std::cin.eof())
 		exit(0);
-	int i = input[0] - '0';
+	int i = input[0] - '0'; 
 	while (input.length() != 1 || i > limit - 1 || i < 0)
 	{
 		std::getline(std::cin, input);
