@@ -16,13 +16,15 @@ int main(int ac, char **av)
 		return (std::cerr << "Error: s1 cannot be empty" << std::endl, 1);
 	std::string s2 = av[3];
 
+	// std::cout << filename << " " << s1 << " " << s2 << std::endl; /// debug
+
 	std::ifstream istrm(filename.c_str(), std::ios::in); // c_str expected before c++11, explicit text mode
 	if (!istrm.is_open())
 		return (std::cout << "failed to open " << filename << '\n', 1);
 	// read file to memory
 	std::string content((std::istreambuf_iterator<char>(istrm)),
 						std::istreambuf_iterator<char>());
-
+	// then edit memory
 	std::string result;
 	size_t found, pos = 0;
 	while ((found = content.find(s1, pos)) != std::string::npos)
