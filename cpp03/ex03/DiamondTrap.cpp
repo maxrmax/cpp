@@ -1,18 +1,17 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap(), Name("Dia")
 {
-	this->Name = "Dia";
-	this->atk = FragTrap::atk; // Frag::atk = 30
-	this->EP = ScavTrap::EP; // Scav::EP = 50
-	this->HP = FragTrap::HP; // Frag::HP = 100
+	this->atk = FragTrap::atk;
+	this->EP = ScavTrap::EP;
+	this->HP = FragTrap::HP;
 	std::cout << "DiamondTrap " << Name << " constructed" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(std::string Name) : ClapTrap(Name + "_clap_name"), FragTrap(), ScavTrap()
 {
 	this->Name = Name;
-	this->atk = 30;
+	this->atk = FragTrap::atk;
 	this->EP = ScavTrap::EP;
 	this->HP = FragTrap::HP;
 	std::cout << "DiamondTrap " << Name << " constructed" << std::endl;
