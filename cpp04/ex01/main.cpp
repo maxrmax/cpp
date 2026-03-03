@@ -18,7 +18,7 @@ int main(void)
 		std::cout << i + 1 << " ";
 		animals[i] = new Cat();
 	}
-	
+
 	// expected: 5x WanWan!, 5x Nyaa~
 	for (int i = 0; i < 10; i++)
 		animals[i]->makeSound();
@@ -36,8 +36,10 @@ int main(void)
 	// -- deep copy test --
 	// Brain copy constructor must fire -> proving deep copy, not shallow
 	std::cout << "=== Deep copy test ===" << std::endl;
-	Dog dog1; // Animal, Brain, Dog
-	Dog dog2(dog1); // Animal, Brain, Dog (copy)
+	Dog dog1;
+	Dog dog2(dog1);
+	std::cout << "dog1 brain address: " << &dog1 << std::endl;
+	std::cout << "dog2 brain address: " << &dog2 << std::endl;
 	dog2.makeSound(); // expected: WanWan!
 
 	std::cout << std::endl;
@@ -49,6 +51,8 @@ int main(void)
 	Cat cat1;
 	Cat cat2;
 	cat2 = cat1; // copy assignment
+	std::cout << "cat1 brain address: " << &cat1 << std::endl;
+	std::cout << "cat2 brain address: " << &cat2 << std::endl;
 	cat2.makeSound(); // expected: Nyaa~
 
 	std::cout << std::endl;
